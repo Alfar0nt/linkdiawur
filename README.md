@@ -1,12 +1,12 @@
-# yumi.to
+# Diawur Link
 
-Your personal URL shortener built with Nuxt, Supabase, Cloudflare Pages, and TailwindCSS.
+Your personal URL shortener built with Nuxt 3, Supabase, Vercel, and TailwindCSS.
 
-![yumi.to](./readme/dashboard.png)
+![Diawur Link Dashboard](./readme/dashboard.png)
 
 ## Features
 
-- 100% free (can be hosted at completely free with Cloudflare Pages, Supabase, and GitHub)
+- 100% free (can be hosted completely free with Vercel, Supabase, and GitHub)
   and open-source
 - Create shortlinks via dashboard or an API call
 - Shortlinks can be manually created or automatically generated
@@ -17,15 +17,28 @@ Your personal URL shortener built with Nuxt, Supabase, Cloudflare Pages, and Tai
   - From JSON-based dictionary
 - Preconfigured iOS Shortcuts
 
+## Tech Stack
+
+- **Framework:** Nuxt 3 + Vue 3 + TypeScript
+- **Styling:** TailwindCSS + SCSS
+- **Database & Auth:** Supabase (PostgreSQL + GitHub OAuth)
+- **Edge Functions:** Supabase Edge Functions (Deno)
+- **Deployment:** Vercel
+- **Validation:** Zod
+- **Short Code Generation:** nanoid
+
+See [docs/tech-stack.md](./docs/tech-stack.md) for full details.
+
 ## Installation
 
 ### Requirements
 
-There is no requirement to use this project, but the following are recommended:
+- [Node.js](https://nodejs.org/) 18+ or [Bun](https://bun.sh/)
+- A [Supabase](https://supabase.com/) project
+- A [Vercel](https://vercel.com/) account
+- Domain name (e.g. `diawur.biz.id`)
 
-- Domain name (e.g. `yumi.to`)
-
-### Creating Supabase project
+### Creating Supabase Project
 
 1. Create a new Supabase project
 2. Add a new table called `shortlinks` with the following columns:
@@ -35,7 +48,7 @@ There is no requirement to use this project, but the following are recommended:
    - `link` (type: `text`)
    - `expire` (type: `timestamptz`, default: `NULL`)
 
-or you can use the following SQL query:
+Or use the following SQL query:
 
 ```sql
 create table public.shortlinks (
@@ -49,18 +62,17 @@ create table public.shortlinks (
 )
 ```
 
-### Deploying
+### Deploying to Vercel
 
 1. Fork this repository
-2. Create a new Cloudflare Pages project connected to your fork
-3. Add the following Cloudflare Pages environment variables:
-   - `SUPABASE_URL` (your Supabase URL e.g.
-     `https://<your-project>.supabase.co`)
-   - `SUPABASE_KEY` (your Supabase public anon key)
-   - `BASE_URL` (your domain name e.g. `https://yumi.to`)
-4. Follow the instructions
-   [here](https://developers.cloudflare.com/pages/configuration/custom-domains/)
-   to set up your custom domain.
+2. Import the project on [Vercel](https://vercel.com/new)
+3. Vercel will auto-detect the Nuxt framework
+4. Add the following environment variables:
+   - `SUPABASE_URL` — your Supabase URL (e.g. `https://<your-project>.supabase.co`)
+   - `SUPABASE_KEY` — your Supabase public anon key
+   - `BASE_URL` — your domain name (e.g. `https://diawur.biz.id`)
+5. Deploy
+6. Configure your custom domain in Vercel project settings
 
 ### Authentication with GitHub
 
@@ -71,13 +83,13 @@ provider settings.
 To continue with GitHub, follow the instructions
 [here](https://supabase.com/docs/guides/auth/social-login/auth-github)
 
-### Row-level security for Supabase
+### Row-Level Security for Supabase
 
 After setting up authentication, you can add row-level security to your Supabase
 table to prevent unauthorized users from modifying your shortlinks.
 
 1. Create an account for yourself in the dashboard of your fork of this project
-   (e.g. `https://yumi.to/dashboard`)
+   (e.g. `https://diawur.biz.id/dashboard`)
 2. Copy your user ID from the `users` table in Supabase
 3. Add the following row-level security policies to your `shortlinks` table
    (replace `<your-user-id>` with your user ID from step 2):
@@ -114,12 +126,12 @@ select cron.schedule(
 ### Customizing
 
 - Change `url` in `composables/useExternalRedirect.ts` to whatever you want
-  default redirect to be (e.g. `https://yumiizumi.com`)
+  default redirect to be (e.g. `https://diawur.biz.id`)
 - Add every deployed URL that should support GitHub sign-in to the allowed
   redirect URLs in Supabase Auth settings.
 - Change the `pages/blog` directory to whatever you want for specific directory
   name shortlinks (e.g. `pages/blog` -> `pages/abc` to support links like
-  `yumi.to/abc/xyz`)
+  `diawur.biz.id/abc/xyz`)
 - This project uses TailwindCSS for styling, so you can customize the styles by
   editing the component classes
 
@@ -133,10 +145,26 @@ do this, you can use the following shortcut:
    2. Take the MD5 hash of the API key
    3. Store the MD5 hash of the API key as `API_KEY_HASH` in your Supabase Edge
       Function Secrets Management settings
-2. Get the iOS shortcut [here](https://yumi.to/aa)
+2. Get the iOS shortcut [here](https://diawur.biz.id/aa)
 3. First time you run the shortcut, you will be prompted to enter your domain
-   name (e.g. `yumi.to`) and the API key you created in step 1
+   name (e.g. `diawur.biz.id`) and the API key you created in step 1
 4. You are now ready to use the shortcut!
+
+## Development
+
+```bash
+# Install dependencies
+bun install
+
+# Start dev server
+bun run dev
+
+# Build for production
+bun run build
+
+# Preview production build
+bun run preview
+```
 
 ## License
 
@@ -146,7 +174,7 @@ for details.
 ## Acknowledgements
 
 - [Supabase](https://supabase.io)
-- [Cloudflare Pages](https://pages.cloudflare.com)
+- [Vercel](https://vercel.com)
 - [Nuxt](https://nuxtjs.org)
 - [TailwindCSS](https://tailwindcss.com)
-- [Create a Scalable URL Shortener App Using Nuxt 3, Supabase, and TainwilndCSS](https://youtube.com/watch?v=A3OO1ZVLRjA)
+- [yumi.to](https://github.com/nicehash/yumi.to) — original project by Yumi Izumi

@@ -5,8 +5,8 @@ const user = useSupabaseUser();
 <script lang="ts">
 const authenticate = async () => {
   const supabase = useSupabaseClient();
-  const redirectTo = ["yumi.to", "www.yumi.to"].includes(window.location.hostname)
-    ? "https://yumi.to/dashboard"
+  const redirectTo = ["diawur.biz.id", "www.diawur.biz.id"].includes(window.location.hostname)
+    ? "https://diawur.biz.id/dashboard"
     : `${window.location.origin}/dashboard`;
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "github",
