@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     redirect: false,
   },
   nitro: {
-    preset: "cloudflare_pages",
+    preset: "vercel",
   },
   robots: {
     UserAgent: "*",
