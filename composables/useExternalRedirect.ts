@@ -1,5 +1,5 @@
 export default async function useExternalRedirect(
-  url: string = "https://yumiizumi.com/",
+  url: string = "https://www.dhiar.my.id/",
   code: number = 302
 ) {
   if (process.server) {
