@@ -1,4 +1,4 @@
 <!-- depth 3 -->
 <template lang="pug">
-RedirectView 
+RedirectView
 </template>

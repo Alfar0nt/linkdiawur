@@ -106,6 +106,25 @@ Edit `types/supabase.ts` to match any schema changes. The only table is `shortli
 - Server code uses Nuxt 3 event handlers (`defineEventHandler`)
 - No test framework is currently configured
 
+## Testing & Quality Gates
+
+Run these before any commit or push (details in `docs/TESTING.md`):
+
+```bash
+bun run lint        # style + code quality
+bun run typecheck   # type safety
+bun run build       # full production build (what Vercel runs)
+bun run check       # typecheck + build in one command
+```
+
+- The `supabase/functions/` Deno edge functions are **excluded** from typecheck and lint via `tsconfig.json` and `.eslintignore`.
+- No Nitro preset is hardcoded in `nuxt.config.ts`. Local builds use `node-server` (so `nuxt preview` works); Vercel auto-detects the `vercel` preset in its environment.
+- The Vercel function runtime is pinned to **`nodejs22.x`** via `nitro.vercel.functions.runtime` — do not change unless Vercel adds new runtimes.
+
+## Roadmap
+
+Planned and upcoming changes are tracked in `docs/TO-DO.md`. Check it before starting new work and move completed items to `docs/CHANGELOGS.md`.
+
 ## Important Notes
 
 - The `robots` config in `nuxt.config.ts` disallows all crawling (`Disallow: /`)

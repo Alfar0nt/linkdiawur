@@ -1,67 +1,66 @@
-import { serverSupabaseClient } from "#supabase/server";
-import { nanoid } from "nanoid";
-import Database from "@/types/supabase";
+import { nanoid } from 'nanoid'
+import { serverSupabaseClient } from '#supabase/server'
+import type { Database } from '@/types/supabase'
 
 export default defineEventHandler(async (event) => {
   try {
-    const { link } = getQuery(event);
-    const { apikey } = getHeaders(event);
+    const { link } = getQuery(event)
+    const { apikey } = getHeaders(event)
 
     if (
       !link ||
-      typeof link !== "string" ||
+      typeof link !== 'string' ||
       !apikey ||
-      typeof apikey !== "string"
+      typeof apikey !== 'string'
     ) {
-      throw new Error("Missing parameters!");
+      throw new Error('Missing parameters!')
     }
 
-    const url = new URL(link);
-    if (!url.protocol.includes("http")) {
-      throw new Error("Invalid link! Must be a valid URL!");
+    const url = new URL(link)
+    if (!url.protocol.includes('http')) {
+      throw new Error('Invalid link! Must be a valid URL!')
     }
 
-    const supabase = await serverSupabaseClient<Database>(event);
+    const supabase = await serverSupabaseClient<Database>(event)
 
-    let shortExists = true;
-    let short = "";
+    let shortExists = true
+    let short = ''
     while (shortExists) {
-      short = nanoid(2);
+      short = nanoid(2)
       const { data: existingShortlink } = await supabase
-        .from("shortlinks")
-        .select("*")
-        .eq("short", short)
-        .single();
+        .from('shortlinks')
+        .select('*')
+        .eq('short', short)
+        .single()
       if (!existingShortlink) {
-        shortExists = false;
+        shortExists = false
       }
     }
 
-    const { data, error } = await supabase.functions.invoke("newShortlink", {
+    const { error } = await supabase.functions.invoke('newShortlink', {
       body: JSON.stringify({
         short,
         link,
-        apiKey: apikey,
-      }),
-    });
-
-    console.log({ data, error });
+        apiKey: apikey
+      })
+    })
 
     if (error) {
-      throw new Error(error.message);
+      throw new Error(error.message)
     }
 
     return {
       status: 200,
-      message: "Success! New short URL created!",
-      newShortlink: `${process.env.BASE_URL}/${short}`,
-    };
+      message: 'Success! New short URL created!',
+      newShortlink: `${process.env.BASE_URL}/${short}`
+    }
   } catch (err) {
-    console.error(err);
-    let error = err as Error;
+    // eslint-disable-next-line no-console
+    console.error(err)
+    const error = err as Error
     return {
       status: 500,
-      message: `Error! ${error.message}`,
-    };
+      message: `Error! ${error.message}`
+    }
   }
-});
+})

@@ -1,33 +1,35 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  telemetry: false,
   modules: [
-    "@nuxtjs/supabase",
-    "@nuxtjs/tailwindcss",
-    "nuxt-headlessui",
-    "@nuxtjs/robots",
-    "nuxt-primevue",
+    '@nuxtjs/supabase',
+    '@nuxtjs/tailwindcss',
+    'nuxt-headlessui',
+    '@nuxtjs/robots',
+    'nuxt-primevue'
   ],
-  css: ["primevue/resources/themes/lara-dark-teal/theme.css"],
+  css: ['primevue/resources/themes/lara-dark-teal/theme.css'],
   supabase: {
-    redirect: false,
+    redirect: false
   },
   nitro: {
-    preset: "vercel",
     vercel: {
       functions: {
-        runtime: "nodejs22.x",
-      },
-    },
+        runtime: 'nodejs22.x'
+      }
+    }
   },
   robots: {
-    UserAgent: "*",
-    Disallow: "/",
+    rules: {
+      UserAgent: '*',
+      Disallow: '/'
+    }
   },
   primevue: {
     components: {
-      prefix: "P",
-      include: ["Calendar"],
-    },
-  },
-});
+      prefix: 'P',
+      include: ['Calendar']
+    }
+  }
+})

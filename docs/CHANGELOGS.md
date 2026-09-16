@@ -2,6 +2,34 @@
 
 All notable changes to Diawur Link will be documented in this file.
 
+## [0.3.0] - 2026-09-16
+
+### Vercel Deployment Fixes
+
+- Pinned Vercel function runtime to `nodejs22.x` via `nitro.vercel.functions.runtime` (previously Vercel rejected the generated `nodejs26.x`, which came from the local Node version)
+- Removed committed `.vercel/` build output from git and added `.vercel` to `.gitignore` — Vercel now builds from source instead of using prebuilt artifacts
+- Removed the hardcoded `nitro.preset` — local builds use `node-server` (enables `nuxt preview`), Vercel auto-detects the `vercel` preset in its environment
+
+### Local Build Improvements
+
+- Disabled Nuxt telemetry (`telemetry: false`) which blocked non-interactive builds with an EPIPE prompt error
+- `bun run preview` now works locally after `bun run build`
+
+### Tooling
+
+- Added `typecheck`, `lint`, and `check` scripts to `package.json`
+- Added dev dependencies: `typescript@5`, `vue-tsc`, `@nuxtjs/eslint-config-typescript`
+- Added `.eslintrc.cjs` and `.eslintignore` (excludes Deno edge functions)
+- Fixed type errors: `robots` config `rules` wrapper, `import type` for Supabase `Database`, excluded `supabase/functions/**` from `tsconfig.json`
+- Fixed lint issues across `pages/`, `server/`, and `composables/`; removed stray `console.log` from `server/api/new.post.ts`
+
+### Documentation
+
+- Added `docs/TO-DO.md` — upcoming and planned changes tracker
+- Added `docs/TESTING.md` — safe local testing workflow (lint → typecheck → build → preview)
+- Added testing/quality-gate sections to `AGENTS.md` and `.ai/AGENTS.md`
+- `docs/CHANGELOGS.md` and `docs/TO-DO.md` referenced from both agent guides
+
 ## [0.2.0] - 2026-09-16
 
 ### Rebranding

@@ -1,23 +1,26 @@
 <script lang="ts" setup>
-const user = useSupabaseUser();
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const user = useSupabaseUser()
 </script>
 
 <script lang="ts">
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const authenticate = async () => {
-  const supabase = useSupabaseClient();
-  const redirectTo = ["diawur.biz.id", "www.diawur.biz.id"].includes(window.location.hostname)
-    ? "https://diawur.biz.id/dashboard"
-    : `${window.location.origin}/dashboard`;
+  const supabase = useSupabaseClient()
+  const redirectTo = ['diawur.biz.id', 'www.diawur.biz.id'].includes(window.location.hostname)
+    ? 'https://diawur.biz.id/dashboard'
+    : `${window.location.origin}/dashboard`
   const { error } = await supabase.auth.signInWithOAuth({
-    provider: "github",
+    provider: 'github',
     options: {
-      redirectTo,
-    },
-  });
+      redirectTo
+    }
+  })
   if (error) {
-    console.error(error);
+    // eslint-disable-next-line no-console
+    console.error(error)
   }
-};
+}
 </script>
 
 <template lang="pug">

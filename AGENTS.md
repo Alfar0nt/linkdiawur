@@ -47,6 +47,8 @@ Requires a `.env` file with `SUPABASE_URL`, `SUPABASE_KEY`, and `BASE_URL`. See 
 - `.ai/AGENTS.md` — Full AI agent onboarding guide
 - `docs/tech-stack.md` — Detailed technology breakdown
 - `docs/CHANGELOGS.md` — Version history
+- `docs/TO-DO.md` — Upcoming and planned changes
+- `docs/TESTING.md` — How to safely test locally before committing
 - `nuxt.config.ts` — Framework configuration
 - `pages/dashboard.vue` — Auth and dashboard entry point
 - `components/RedirectView.vue` — Core redirect logic

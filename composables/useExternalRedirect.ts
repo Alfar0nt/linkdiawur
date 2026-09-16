@@ -1,17 +1,17 @@
-export default async function useExternalRedirect(
-  url: string = "https://www.dhiar.my.id/",
+export default async function useExternalRedirect (
+  url: string = 'https://www.dhiar.my.id/',
   code: number = 302
 ) {
   if (process.server) {
-    const nuxtApp = useNuxtApp();
+    const nuxtApp = useNuxtApp()
     if (nuxtApp.ssrContext?.event) {
-      await nuxtApp.callHook("app:redirected");
+      await nuxtApp.callHook('app:redirected')
       if (nuxtApp.ssrContext?.event) {
-        return sendRedirect(nuxtApp.ssrContext.event, url, code);
+        return sendRedirect(nuxtApp.ssrContext.event, url, code)
       }
     }
   } else {
-    window.location.href = url;
+    window.location.href = url
   }
-  throw new Error("Failed to redirect");
+  throw new Error('Failed to redirect')
 }

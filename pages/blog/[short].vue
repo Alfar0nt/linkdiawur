@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import z from 'zod'
+import { z } from 'zod'
 import { useRoute } from 'vue-router'
 
 const DictionarySchema = z.record(z.string())
