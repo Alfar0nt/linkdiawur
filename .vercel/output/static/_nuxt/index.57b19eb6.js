@@ -1,1 +1,0 @@
-import{_ as o}from"./RedirectView.vue.168aeddd.js";import{I as c,m as r,_ as t}from"./entry.06e76d58.js";import"./useExternalRedirect.b4539519.js";function n(s,a){const e=o;return r(),c(e)}const _={},p=t(_,[["render",n]]);export{p as default};

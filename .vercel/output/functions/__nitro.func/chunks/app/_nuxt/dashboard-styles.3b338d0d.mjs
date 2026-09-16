@@ -1,6 +1,0 @@
-const dashboard_vue_vue_type_style_index_0_lang = "*{box-sizing:border-box;margin:0;padding:0}html{--text-color-rgb:245,229,229;--text-hover:#a1a0a0;-ms-overflow-style:none;background-color:#0f0f0f;color:#f5f5e5;font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;overflow-y:scroll;scrollbar-width:none}html::-webkit-scrollbar{display:none}main{padding:2rem 0}h1{font-size:1.5rem;font-weight:400;margin-bottom:1rem}div#search,ul{max-width:95svw;width:600px}ul li{background-color:hsla(0,44%,93%,.1);background-color:rgba(var(--text-color-rgb),.1);border-radius:.5rem;margin-bottom:1rem;padding:1rem}ul li:not(#add-shortlink):focus-within,ul li:not(#add-shortlink):hover{background-color:hsla(0,44%,93%,.2);background-color:rgba(var(--text-color-rgb),.2)}ul li p{word-wrap:break-word}button:focus-within{background-color:hsla(0,44%,93%,.1);background-color:rgba(var(--text-color-rgb),.1);outline:none}input:focus-within,textarea:focus-within{outline:none}";
-
-const dashboardStyles_3b338d0d = [dashboard_vue_vue_type_style_index_0_lang, dashboard_vue_vue_type_style_index_0_lang];
-
-export { dashboardStyles_3b338d0d as default };
-//# sourceMappingURL=dashboard-styles.3b338d0d.mjs.map
